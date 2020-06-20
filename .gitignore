@@ -1,0 +1,29 @@
+# System files
+.DS_Store
+
+# project files
+.gradle
+.gradle_user_home
+.idea/
+*.ipr
+*.iml
+*.iws
+
+# build / output files
+build/
+out/
+target/
+*.class
+*.jar
+*.war
+*.ear
+
+# defacto for empty directories
+!.gitkeep
+
+# Avoid ignoring Gradle wrapper jar file
+!gradle-wrapper.jar
+
+
+# ignore debug suites
+*debug.xml
