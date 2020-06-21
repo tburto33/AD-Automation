@@ -18,7 +18,8 @@ public class SearchPage {
     private WebElement btnSearchSubmit;
     @FindBy(id = "links_wrapper")
     private WebElement containerSearchResults;
-    @FindBy(xpath = "//div[contains(@class, 'js-images-thumbnails')]")
+    //@FindBy(xpath = "//div[contains(@class, 'js-images-thumbnails')]")
+    @FindBy(xpath = "//div [contains(@class, 'ia-modules js-ia-modules')]")
     private WebElement pictureContainerSearchResults;
     @FindBy(id = "search_form")
     private WebElement searchResultsPageSearchBar;

@@ -1,13 +1,16 @@
+import com.google.common.base.Verify;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
 import pageObjects.SearchPage;
 
 public class DDGSearchTests {
 
+    SoftAssert softAssert = new SoftAssert();
 
     @Test(groups = {"Regression", "Search", "Smoke", "Debug"}, testName = "Verify search results from ddg search query.")
     public void verifyDDGSearchResults() {
@@ -30,7 +33,7 @@ public class DDGSearchTests {
         searchPage.fillSearchInputWithTerm();
         searchPage.clickSearchBtn();
         Assert.assertTrue(searchPage.isSearchResultsDisplayed(), "Verifying Search Results Container.");
-        Assert.assertTrue(searchPage.isPictureResultsDisplayed(), "Verifying Picture Results Container");
+        softAssert.assertTrue(searchPage.isPictureResultsDisplayed(), "Verifying Picture Results Container");
 
         //Next test, same as above with using keyboard enter key.
         searchPage.clearThenEnterNewSearchTerm();
