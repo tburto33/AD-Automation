@@ -13,7 +13,7 @@ public class DDGSearchTests {
     SoftAssert softAssert = new SoftAssert();
 
     @Test(groups = {"Regression", "Search", "Smoke", "Debug"}, testName = "Verify search results from ddg search query.")
-    public void verifyDDGSearchResults() {
+    public void verifyDDGSearchResults() throws InterruptedException {
         // Vars
 
         // Sets property for location of driver executable.
@@ -31,15 +31,22 @@ public class DDGSearchTests {
 
         //Search with provided term, submit and assert page/picture landing, search query in search results,.
         searchPage.fillSearchInputWithTerm();
+        Thread.sleep(2000);
         searchPage.clickSearchBtn();
+        Thread.sleep(2000);
         Assert.assertTrue(searchPage.isSearchResultsDisplayed(), "Verifying Search Results Container.");
         softAssert.assertTrue(searchPage.isPictureResultsDisplayed(), "Verifying Picture Results Container");
+//        Assert.assertTrue(searchPage.isSearchResultDisplayedInSearchBar());
 
         //Next test, same as above with using keyboard enter key.
-        searchPage.clearThenEnterNewSearchTerm();
+        searchPage.clearTheSearchBar();
+        Thread.sleep(2000);
+        searchPage.fillSearchInputWithTermResultsPage();
+        Thread.sleep(2000);
         searchPage.keyboardEnterBtn();
+        Thread.sleep(2000);
         Assert.assertTrue(searchPage.isSearchResultsDisplayed(), "Verifying Search Results Container.");
-        Assert.assertTrue(searchPage.isPictureResultsDisplayed(), "Verifying Picture Results Container");
+        softAssert.assertTrue(searchPage.isPictureResultsDisplayed(), "Verifying Picture Results Container");
 
         // Calling driver quit to close and dispose of driver and process.
         driver.quit();
@@ -47,5 +54,4 @@ public class DDGSearchTests {
 
 
     }
-
 }

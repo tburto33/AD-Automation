@@ -21,8 +21,10 @@ public class SearchPage {
     //@FindBy(xpath = "//div[contains(@class, 'js-images-thumbnails')]")
     @FindBy(xpath = "//div [contains(@class, 'ia-modules js-ia-modules')]")
     private WebElement pictureContainerSearchResults;
-    @FindBy(id = "search_form")
+    @FindBy(id = "search_form_input")
     private WebElement searchResultsPageSearchBar;
+    @FindBy()
+    private WebElement searchResultIsDisplayedInSearchBar;
 
     //List of search terms
     String[] searchTerms = {
@@ -45,12 +47,16 @@ public class SearchPage {
 
 
     public void fillSearchInputWithTerm() {
+
         inputSearch.sendKeys(searchTerms[select]);
     }
 
-    public void clearThenEnterNewSearchTerm(){
+    public void clearTheSearchBar(){
         searchResultsPageSearchBar.clear();
-        inputSearch.sendKeys(searchTerms[select]);
+    }
+
+    public void fillSearchInputWithTermResultsPage(){
+        searchResultsPageSearchBar.sendKeys(searchTerms[select]);
     }
 
     public void clickSearchBtn(){
@@ -74,5 +80,13 @@ public class SearchPage {
     public void keyboardEnterBtn(){
         robot.keyPress(KeyEvent.VK_ENTER);
     }
+
+    public boolean isSearchResultDisplayedInSearchBar(){
+        if(searchResultIsDisplayedInSearchBar.isDisplayed()){
+            return true;
+        }
+        return false;
+    }
+
 }
 
