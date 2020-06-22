@@ -23,9 +23,8 @@ public class SearchPage {
     private WebElement pictureContainerSearchResults;
     @FindBy(id = "search_form_input")
     private WebElement searchResultsPageSearchBar;
-    @FindBy()
-    private WebElement searchResultIsDisplayedInSearchBar;
-
+    @FindBy(id = "search_form_input")
+    private WebElement inputSearchResultsQuery;
     //List of search terms
     String[] searchTerms = {
             "Baby Ferret Pictures",
@@ -81,11 +80,13 @@ public class SearchPage {
         robot.keyPress(KeyEvent.VK_ENTER);
     }
 
-    public boolean isSearchResultDisplayedInSearchBar(){
-        if(searchResultIsDisplayedInSearchBar.isDisplayed()){
-            return true;
-        }
-        return false;
+    public boolean isSearchResultDisplayedInSearchBar(String expectedQuery){
+        return getSearchQueryText().equals(expectedQuery);
+    }
+
+    public String getSearchQueryText(){
+//        return inputSearchResultsQuery.getText();
+        return inputSearchResultsQuery.getAttribute("Value");
     }
 
 }
