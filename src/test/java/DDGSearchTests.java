@@ -14,6 +14,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
+
 public class DDGSearchTests {
 
     SoftAssert softAssert = new SoftAssert();
@@ -46,7 +47,8 @@ public class DDGSearchTests {
         driver.get("http://duckduckgo.com/");
 
         //Search with provided term, submit and assert page/picture landing, search query in search results,.
-        searchPage.fillSearchInputWithTerm();
+
+        searchPage.fillSearchInputWithTerm(randomTerm);
         Thread.sleep(2000);
         searchPage.clickSearchBtn();
         Thread.sleep(2000);
@@ -58,18 +60,16 @@ public class DDGSearchTests {
         //Next test, same as above with using keyboard enter key.
         searchPage.clearTheSearchBar();
         Thread.sleep(2000);
-        searchPage.fillSearchInputWithTermResultsPage();
+        searchPage.fillSearchInputWithTermResultsPage(randomTerm);
         Thread.sleep(2000);
         searchPage.keyboardEnterBtn();
         Thread.sleep(2000);
         Assert.assertTrue(searchPage.isSearchResultsDisplayed(), "Verifying Search Results Container.");
         softAssert.assertTrue(searchPage.isPictureResultsDisplayed(), "Verifying Picture Results Container");
 //        Assert.assertTrue((searchPage.isSearchResultDisplayedInSearchBar(randomTerm)),"Verifying Search Query Input");
+        Assert.assertEquals(searchPage.getSearchQueryText(), randomTerm, "Verifying Search Query Input");
 
         // Calling driver quit to close and dispose of driver and process.
         driver.quit();
-
-
-
     }
 }

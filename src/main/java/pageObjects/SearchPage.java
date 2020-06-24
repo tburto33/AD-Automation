@@ -25,18 +25,19 @@ public class SearchPage {
     private WebElement searchResultsPageSearchBar;
     @FindBy(id = "search_form_input")
     private WebElement inputSearchResultsQuery;
-    //List of search terms
-    String[] searchTerms = {
-            "Baby Ferret Pictures",
-            "Home Gardening",
-            "How to hit immortal DOTA2",
-            "Stackoverflow helped me again",
-            "Bearded Dragon Pictures"
-    };
 
-    //Selects random search term to insert into search bar.
-    Random randomSearchTerm = new Random();
-    int select = randomSearchTerm.nextInt(searchTerms.length);
+    //List of search terms. **Moved to DDGSearchTests.
+//    String[] searchTerms = {
+//            "Baby Ferret Pictures",
+//            "Home Gardening",
+//            "How to hit immortal DOTA2",
+//            "Stackoverflow helped me again",
+//            "Bearded Dragon Pictures"
+//    };
+
+    //Selects random search term to insert into search bar. **Moved to DDGSearchTests.
+//    Random randomSearchTerm = new Random();
+//    int select = randomSearchTerm.nextInt(searchTerms.length);
 
     //Bot for clicking simulated keys on keyboard.
     Robot robot = new Robot();
@@ -44,21 +45,23 @@ public class SearchPage {
     public SearchPage() throws AWTException {
     }
 
+    public void fillSearchInputWithTerm(String x) {
 
-    public void fillSearchInputWithTerm() {
-
-        inputSearch.sendKeys(searchTerms[select]);
+        inputSearch.sendKeys(x);
     }
 
     public void clearTheSearchBar(){
+
         searchResultsPageSearchBar.clear();
     }
 
-    public void fillSearchInputWithTermResultsPage(){
-        searchResultsPageSearchBar.sendKeys(searchTerms[select]);
+    public void fillSearchInputWithTermResultsPage(String x){
+
+        searchResultsPageSearchBar.sendKeys(x);
     }
 
     public void clickSearchBtn(){
+
         btnSearchSubmit.click();
     }
 
@@ -77,6 +80,7 @@ public class SearchPage {
     }
 
     public void keyboardEnterBtn(){
+
         robot.keyPress(KeyEvent.VK_ENTER);
     }
 
