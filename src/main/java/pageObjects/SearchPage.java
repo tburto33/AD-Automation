@@ -1,5 +1,6 @@
 package pageObjects;
 
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -40,14 +41,14 @@ public class SearchPage {
 //    int select = randomSearchTerm.nextInt(searchTerms.length);
 
     //Bot for clicking simulated keys on keyboard.
-    Robot robot = new Robot();
+    //Robot robot = new Robot();
 
     public SearchPage() throws AWTException {
     }
 
-    public void fillSearchInputWithTerm(String x) {
+    public void fillSearchInputWithTerm(String searchTerm) {
 
-        inputSearch.sendKeys(x);
+        inputSearch.sendKeys(searchTerm);
     }
 
     public void clearTheSearchBar(){
@@ -55,9 +56,9 @@ public class SearchPage {
         searchResultsPageSearchBar.clear();
     }
 
-    public void fillSearchInputWithTermResultsPage(String x){
+    public void fillSearchInputWithTermResultsPage(String searchTerm){
 
-        searchResultsPageSearchBar.sendKeys(x);
+        searchResultsPageSearchBar.sendKeys(searchTerm);
     }
 
     public void clickSearchBtn(){
@@ -81,7 +82,8 @@ public class SearchPage {
 
     public void keyboardEnterBtn(){
 
-        robot.keyPress(KeyEvent.VK_ENTER);
+        //robot.keyPress(KeyEvent.VK_ENTER);
+        searchResultsPageSearchBar.sendKeys(Keys.ENTER);
     }
 
     public boolean isSearchResultDisplayedInSearchBar(String expectedQuery){
