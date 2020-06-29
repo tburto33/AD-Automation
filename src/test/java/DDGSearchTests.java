@@ -1,3 +1,4 @@
+import LoggingAssert.LoggingAssert;
 import com.google.common.base.Verify;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -44,15 +45,16 @@ public class DDGSearchTests {
 
         //Page Objects
         SearchPage searchPage = PageFactory.initElements(driver, SearchPage.class);
+        LoggingAssert loggingAssert = PageFactory.initElements(driver,LoggingAssert.class);
 
         // Navigates to base URL.
         driver.get("http://duckduckgo.com/");
 
         //Search with provided term, submit and assert page/picture landing, search query in search results,.
         searchPage.fillSearchInputWithTerm(randomTerm1);
-        Thread.sleep(2000);
+        Thread.sleep(1000);
         searchPage.clickSearchBtn();
-        Thread.sleep(2000);
+        Thread.sleep(1000);
         Assert.assertTrue(searchPage.isSearchResultsDisplayed(), "Verifying Search Results Container.");
         softAssert.assertTrue(searchPage.isPictureResultsDisplayed(), "Verifying Picture Results Container");
 //        Assert.assertTrue((searchPage.isSearchResultDisplayedInSearchBar(randomTerm)),"Verifying Search Query Input");
@@ -60,11 +62,11 @@ public class DDGSearchTests {
 
         //Next test, same as above with using keyboard enter key.
         searchPage.clearTheSearchBar();
-        Thread.sleep(2000);
+        Thread.sleep(1000);
         searchPage.fillSearchInputWithTermResultsPage(randomTerm2);
-        Thread.sleep(2000);
+        Thread.sleep(1000);
         searchPage.keyboardEnterBtn();
-        Thread.sleep(2000);
+        Thread.sleep(1000);
         Assert.assertTrue(searchPage.isSearchResultsDisplayed(), "Verifying Search Results Container.");
         softAssert.assertTrue(searchPage.isPictureResultsDisplayed(), "Verifying Picture Results Container");
 //        Assert.assertTrue((searchPage.isSearchResultDisplayedInSearchBar(randomTerm)),"Verifying Search Query Input");
