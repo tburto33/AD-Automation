@@ -8,18 +8,15 @@ import org.testng.annotations.AfterTest;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 import pageObjects.SearchPage;
-
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
-
 public class DDGSearchTests {
 
     SoftAssert softAssert = new SoftAssert();
-    Random random = new Random();
 
     @Test(groups = {"Regression", "Search", "Smoke", "Debug"}, testName = "Verify search results from ddg search query.")
     public void verifyDDGSearchResults() throws InterruptedException {
@@ -31,47 +28,33 @@ public class DDGSearchTests {
         searchTerms.add("Stackoverflow helped me again");
         searchTerms.add("Bearded Dragon Pictures");
 
+        Random random = new Random();
         int randomIndex = random.nextInt(searchTerms.size() -1);
         String randomTerm1 = searchTerms.get(randomIndex);
         String randomTerm2 = searchTerms.get(randomIndex + 1);
 
-
         // Sets property for location of driver executable.
         // TODO: make this environment var, or build groovy script to automate.
         System.setProperty("webdriver.chrome.driver", "C:\\Dev\\Resources\\chromedriver.exe");
-
         // Creates new driver instance to use for the duration of this test.
         WebDriver driver = new ChromeDriver();
-
         //Page Objects
         SearchPage searchPage = PageFactory.initElements(driver, SearchPage.class);
-        LoggingAssert loggingAssert = PageFactory.initElements(driver,LoggingAssert.class);
-
         // Navigates to base URL.
         driver.get("http://duckduckgo.com/");
-
         //Search with provided term, submit and assert page/picture landing, search query in search results,.
         searchPage.fillSearchInputWithTerm(randomTerm1);
-        Thread.sleep(1000);
         searchPage.clickSearchBtn();
-        Thread.sleep(1000);
         Assert.assertTrue(searchPage.isSearchResultsDisplayed(), "Verifying Search Results Container.");
         softAssert.assertTrue(searchPage.isPictureResultsDisplayed(), "Verifying Picture Results Container");
-//        Assert.assertTrue((searchPage.isSearchResultDisplayedInSearchBar(randomTerm)),"Verifying Search Query Input");
         Assert.assertEquals(searchPage.getSearchQueryText(), randomTerm1, "Verifying Search Query Input");
-
         //Next test, same as above with using keyboard enter key.
         searchPage.clearTheSearchBar();
-        Thread.sleep(1000);
         searchPage.fillSearchInputWithTermResultsPage(randomTerm2);
-        Thread.sleep(1000);
         searchPage.keyboardEnterBtn();
-        Thread.sleep(1000);
         Assert.assertTrue(searchPage.isSearchResultsDisplayed(), "Verifying Search Results Container.");
         softAssert.assertTrue(searchPage.isPictureResultsDisplayed(), "Verifying Picture Results Container");
-//        Assert.assertTrue((searchPage.isSearchResultDisplayedInSearchBar(randomTerm)),"Verifying Search Query Input");
         Assert.assertEquals(searchPage.getSearchQueryText(), randomTerm2, "Verifying Search Query Input");
-
         // Calling driver quit to close and dispose of driver and process.
         driver.quit();
     }
