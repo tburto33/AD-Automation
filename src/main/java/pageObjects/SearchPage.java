@@ -1,5 +1,4 @@
 package pageObjects;
-
 import LoggingAssert.LoggingAssert;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
@@ -43,14 +42,12 @@ public class SearchPage {
 
     public boolean isSearchResultsDisplayed() {
         if (containerSearchResults.isDisplayed()) {
-            return true;
         }
         return false;
     }
 
     public boolean isPictureResultsDisplayed(){
         if (pictureContainerSearchResults.isDisplayed()){
-            return true;
         }
         return false;
     }
