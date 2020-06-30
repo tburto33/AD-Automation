@@ -18,7 +18,7 @@ public class DDGSearchTests {
 
     SoftAssert softAssert = new SoftAssert();
 
-    @Test(groups = {"Regression", "Search", "Smoke", "Debug"}, testName = "Verify search results from ddg search query.")
+    @Test(groups = {"Regression", "Search", "Smoke"}, testName = "Verify search results from ddg search query.")
     public void verifyDDGSearchResults() throws InterruptedException {
         // Vars
         List<String> searchTerms = new ArrayList<>();
@@ -35,7 +35,7 @@ public class DDGSearchTests {
 
         // Sets property for location of driver executable.
         // TODO: make this environment var, or build groovy script to automate.
-        System.setProperty("webdriver.chrome.driver", "C:\\Dev\\Resources\\chromedriver.exe");
+        System.setProperty("webdriver.chrome.driver", "Home\\Dev\\Resources\\google-chrome-stable_current_amd64.deb");
         // Creates new driver instance to use for the duration of this test.
         WebDriver driver = new ChromeDriver();
         //Page Objects

@@ -56,7 +56,7 @@ public class SearchPage {
     }
 
     public void keyboardEnterBtn(){
-        searchResultsPageSearchBar.sendKeys(Keys.ENTER);
+        inputSearchResultsPage.sendKeys(Keys.ENTER);
     }
 
     public boolean isSearchResultDisplayedInSearchBar(String expectedQuery){
@@ -64,7 +64,6 @@ public class SearchPage {
     }
 
     public String getSearchQueryText(){
-//        return inputSearchResultsQuery.getText();
         return inputSearchResultsQuery.getAttribute("Value");
     }
 
