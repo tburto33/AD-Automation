@@ -20,21 +20,21 @@ public class DDGSearchTests {
     @Test(groups = {"Regression", "Search", "Smoke"}, testName = "Verify search results from ddg search query.")
     public void verifyDDGSearchResults() throws InterruptedException {
         // Vars
-//        List<String> searchTerms = new ArrayList<>();
-//        searchTerms.add("Baby Ferret Pictures");
-//        searchTerms.add("Home Gardening");
-//        searchTerms.add("How to hit immortal DOTA2");
-//        searchTerms.add("Stackoverflow helped me again");
-//        searchTerms.add("Bearded Dragon Pictures");
-//
-//        Random random = new Random();
-//        int randomIndex = random.nextInt(searchTerms.size() -1);
-//        String randomTerm1 = searchTerms.get(randomIndex);
-//        String randomTerm2 = searchTerms.get(randomIndex);
+        List<String> searchTerms = new ArrayList<>();
+        searchTerms.add("Baby Ferret Pictures");
+        searchTerms.add("Home Gardening");
+        searchTerms.add("How to hit immortal DOTA2");
+        searchTerms.add("Stackoverflow helped me again");
+        searchTerms.add("Bearded Dragon Pictures");
+
+        Random random = new Random();
+        int randomIndex = random.nextInt(searchTerms.size() -1);
+        String randomTerm1 = searchTerms.get(randomIndex);
+        String randomTerm2 = searchTerms.get(randomIndex);
 
         // Sets property for location of driver executable.
         // TODO: make this environment var, or build groovy script to automate.
-        System.setProperty("webdriver.chrome.driver", "/usr/bin/google-chrome");
+        System.setProperty("webdriver.chrome.driver", "Resources/chromedriver");
         // Creates new driver instance to use for the duration of this test.
         WebDriver driver = new ChromeDriver();
         //Page Objects
@@ -44,7 +44,6 @@ public class DDGSearchTests {
         driver.get("http://duckduckgo.com/");
         //Search with provided term, submit and assert page/picture landing, search query in search results,.
         searchPage.fillSearchInputWithTerm(randomTerm1);
-        searchPage.fillSearchInputWithTerm();
         searchPage.clickSearchBtn();
         Assert.assertTrue(searchPage.isSearchResultsDisplayed(), "Verifying Search Results Container.");
         softAssert.assertTrue(searchPage.isPictureResultsDisplayed(), "Verifying Picture Results Container");
