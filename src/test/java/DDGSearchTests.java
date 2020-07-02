@@ -1,36 +1,24 @@
-import com.google.common.base.Verify;
+import RandomHelpers.RandomHelpers;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
-import org.testng.annotations.AfterTest;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 import pageObjects.SearchPage;
-import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 public class DDGSearchTests {
-
     SoftAssert softAssert = new SoftAssert();
 
     @Test(groups = {"Regression", "Search", "Smoke"}, testName = "Verify search results from ddg search query.")
     public void verifyDDGSearchResults() throws InterruptedException {
         // Vars
-        List<String> searchTerms = new ArrayList<>();
-        searchTerms.add("Baby Ferret Pictures");
-        searchTerms.add("Home Gardening");
-        searchTerms.add("How to hit immortal DOTA2");
-        searchTerms.add("Stackoverflow helped me again");
-        searchTerms.add("Bearded Dragon Pictures");
-
-        Random random = new Random();
-        int randomIndex = random.nextInt(searchTerms.size() -1);
-        String randomTerm1 = searchTerms.get(randomIndex);
-        String randomTerm2 = searchTerms.get(randomIndex);
+        List<String> availSearchTerms = DDGData.getSearchTerms();
+        String randomTerm1 = RandomHelpers.getRandomStringFromList(availSearchTerms);
+        availSearchTerms.remove(randomTerm1);
+        String randomTerm2 = RandomHelpers.getRandomStringFromList(availSearchTerms);
+        availSearchTerms.remove(randomTerm2);
 
         // Sets property for location of driver executable.
         // TODO: make this environment var, or build groovy script to automate.
@@ -39,7 +27,6 @@ public class DDGSearchTests {
         WebDriver driver = new ChromeDriver();
         //Page Objects
         SearchPage searchPage = PageFactory.initElements(driver, SearchPage.class);
-        DDGData ddgData = new DDGData();
         // Navigates to base URL.
         driver.get("http://duckduckgo.com/");
         //Search with provided term, submit and assert page/picture landing, search query in search results,.

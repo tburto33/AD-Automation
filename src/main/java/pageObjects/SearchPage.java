@@ -1,16 +1,9 @@
 package pageObjects;
-import LoggingAssert.LoggingAssert;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.testng.Reporter;
-import java.awt.*;
-import java.awt.event.KeyEvent;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
-public class SearchPage {
 
+public class SearchPage {
     @FindBy(id = "search_form_input_homepage")
     private WebElement inputSearchHomepage;
     @FindBy(id = "search_button_homepage")
@@ -41,16 +34,12 @@ public class SearchPage {
     }
 
     public boolean isSearchResultsDisplayed() {
-        if (containerSearchResults.isDisplayed()) {
-        }
-        return false;
+        return containerSearchResults.isDisplayed();
     }
 
     public boolean isPictureResultsDisplayed(){
-        if (pictureContainerSearchResults.isDisplayed()){
+        return pictureContainerSearchResults.isDisplayed();
         }
-        return false;
-    }
 
     public void keyboardEnterBtn(){
         inputSearchResultsPage.sendKeys(Keys.ENTER);
@@ -65,4 +54,3 @@ public class SearchPage {
     }
 
 }
-
