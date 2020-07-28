@@ -5,12 +5,10 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import org.testng.asserts.SoftAssert;
 import pageObjects.SearchPage;
 import java.util.*;
 
 public class DDGSearchTests {
-    SoftAssert softAssert = new SoftAssert();
 
     @Test(groups = {"Regression", "Search", "Smoke"}, testName = "Verify search results from ddg search query.")
     public void verifyDDGSearchResults() throws InterruptedException {
@@ -34,14 +32,13 @@ public class DDGSearchTests {
         searchPage.fillSearchInputWithTerm(randomTerm1);
         searchPage.clickSearchBtn();
         Assert.assertTrue(searchPage.isSearchResultsDisplayed(), "Verifying Search Results Container.");
-        softAssert.assertTrue(searchPage.isPictureResultsDisplayed(), "Verifying Picture Results Container");
+        Assert.assertTrue(searchPage.isPictureResultsDisplayed(), "Verifying Picture Results Container");
         Assert.assertEquals(searchPage.getSearchQueryText(), randomTerm1, "Verifying Search Query Input");
         //Next test, same as above with using keyboard enter key.
-        searchPage.clearTheSearchBar();
         searchPage.fillSearchInputWithTermResultsPage(randomTerm2);
         searchPage.keyboardEnterBtn();
         Assert.assertTrue(searchPage.isSearchResultsDisplayed(), "Verifying Search Results Container.");
-        softAssert.assertTrue(searchPage.isPictureResultsDisplayed(), "Verifying Picture Results Container");
+        Assert.assertTrue(searchPage.isPictureResultsDisplayed(), "Verifying Picture Results Container");
         Assert.assertEquals(searchPage.getSearchQueryText(), randomTerm2, "Verifying Search Query Input");
         // Calling driver quit to close and dispose of driver and process.
         driver.quit();

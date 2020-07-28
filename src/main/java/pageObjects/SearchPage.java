@@ -21,11 +21,8 @@ public class SearchPage {
         inputSearchHomepage.sendKeys(searchTerm);
     }
 
-    public void clearTheSearchBar(){
-        inputSearchResultsPage.clear();
-    }
-
     public void fillSearchInputWithTermResultsPage(String searchTerm){
+        inputSearchResultsPage.clear();
         inputSearchResultsPage.sendKeys(searchTerm);
     }
 
@@ -38,6 +35,10 @@ public class SearchPage {
     }
 
     public boolean isPictureResultsDisplayed(){
+        if(!pictureContainerSearchResults.isDisplayed()) {
+            System.out.println("Picture container not displayed or not available, returning search results only.");
+            return containerSearchResults.isDisplayed();
+        }
         return pictureContainerSearchResults.isDisplayed();
         }
 
