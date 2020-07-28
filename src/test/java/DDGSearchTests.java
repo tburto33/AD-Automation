@@ -29,13 +29,13 @@ public class DDGSearchTests {
         // Navigates to base URL.
         driver.get("http://duckduckgo.com/");
         //Search with provided term, submit and assert page/picture landing, search query in search results,.
-        searchPage.fillSearchInputWithTerm(randomTerm1);
+        searchPage.fillSearchInputWithTerm(randomTerm1, searchPage.inputSearchHomepage);
         searchPage.clickSearchBtn();
         Assert.assertTrue(searchPage.isSearchResultsDisplayed(), "Verifying Search Results Container.");
         Assert.assertTrue(searchPage.isPictureResultsDisplayed(), "Verifying Picture Results Container");
         Assert.assertEquals(searchPage.getSearchQueryText(), randomTerm1, "Verifying Search Query Input");
         //Next test, same as above with using keyboard enter key.
-        searchPage.fillSearchInputWithTermResultsPage(randomTerm2);
+        searchPage.fillSearchInputWithTerm(randomTerm2, searchPage.inputSearchResultsPage);
         searchPage.keyboardEnterBtn();
         Assert.assertTrue(searchPage.isSearchResultsDisplayed(), "Verifying Search Results Container.");
         Assert.assertTrue(searchPage.isPictureResultsDisplayed(), "Verifying Picture Results Container");

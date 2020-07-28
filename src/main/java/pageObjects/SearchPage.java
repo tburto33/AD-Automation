@@ -5,7 +5,7 @@ import org.openqa.selenium.support.FindBy;
 
 public class SearchPage {
     @FindBy(id = "search_form_input_homepage")
-    private WebElement inputSearchHomepage;
+    public WebElement inputSearchHomepage;
     @FindBy(id = "search_button_homepage")
     private WebElement btnSearchSubmit;
     @FindBy(id = "links_wrapper")
@@ -13,18 +13,28 @@ public class SearchPage {
     @FindBy(xpath = "//div [contains(@class, 'ia-modules js-ia-modules')]")
     private WebElement pictureContainerSearchResults;
     @FindBy(id = "search_form_input")
-    private WebElement inputSearchResultsPage;
+    public WebElement inputSearchResultsPage;
     @FindBy(id = "search_form_input")
     private WebElement inputSearchResultsQuery;
 
-    public void fillSearchInputWithTerm(String searchTerm) {
-        inputSearchHomepage.sendKeys(searchTerm);
+    //Enter any search term and choose which search page to send it to.
+    public void fillSearchInputWithTerm(String searchTerm, WebElement inputSearchPage){
+        if(inputSearchPage == inputSearchHomepage){
+            inputSearchHomepage.sendKeys(searchTerm);
+        }else if(inputSearchPage == inputSearchResultsPage){
+            inputSearchResultsPage.clear();
+            inputSearchResultsPage.sendKeys(searchTerm);
+        }
     }
 
-    public void fillSearchInputWithTermResultsPage(String searchTerm){
-        inputSearchResultsPage.clear();
-        inputSearchResultsPage.sendKeys(searchTerm);
-    }
+//    public void fillSearchInputWithTerm(String searchTerm) {
+//        inputSearchHomepage.sendKeys(searchTerm);
+//    }
+//
+//    public void fillSearchInputWithTermResultsPage(String searchTerm){
+//        inputSearchResultsPage.clear();
+//        inputSearchResultsPage.sendKeys(searchTerm);
+//    }
 
     public void clickSearchBtn(){
         btnSearchSubmit.click();
