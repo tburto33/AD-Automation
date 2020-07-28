@@ -26,16 +26,7 @@ public class SearchPage {
             inputSearchResultsPage.sendKeys(searchTerm);
         }
     }
-
-//    public void fillSearchInputWithTerm(String searchTerm) {
-//        inputSearchHomepage.sendKeys(searchTerm);
-//    }
-//
-//    public void fillSearchInputWithTermResultsPage(String searchTerm){
-//        inputSearchResultsPage.clear();
-//        inputSearchResultsPage.sendKeys(searchTerm);
-//    }
-
+    
     public void clickSearchBtn(){
         btnSearchSubmit.click();
     }
