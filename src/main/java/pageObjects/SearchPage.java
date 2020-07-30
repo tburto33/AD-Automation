@@ -26,7 +26,7 @@ public class SearchPage {
             inputSearchResultsPage.sendKeys(searchTerm);
         }
     }
-    
+
     public void clickSearchBtn(){
         btnSearchSubmit.click();
     }
