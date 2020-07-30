@@ -6,7 +6,7 @@ import org.openqa.selenium.support.FindBy;
 
 public class SearchPage {
     @FindBy(id = "search_form_input_homepage")
-    public WebElement inputSearchHomepage;
+    private WebElement inputSearchHomepage;
     @FindBy(id = "search_button_homepage")
     private WebElement btnSearchSubmit;
     @FindBy(id = "links_wrapper")
@@ -14,20 +14,34 @@ public class SearchPage {
     @FindBy(xpath = "//div [contains(@class, 'ia-modules js-ia-modules')]")
     private WebElement pictureContainerSearchResults;
     @FindBy(id = "search_form_input")
-    public WebElement inputSearchResultsPage;
+    private WebElement inputSearchResultsPage;
     @FindBy(id = "search_form_input")
     private WebElement inputSearchResultsQuery;
 
     //Enter any search term and choose which search page to send it to.
-    public void fillSearchInputWithTerm(String searchTerm, WebElement inputSearchPage){
-        if(inputSearchPage == inputSearchHomepage){
-            inputSearchHomepage.clear();
-            inputSearchHomepage.sendKeys(searchTerm);
-        }else if(inputSearchPage == inputSearchResultsPage){
-            inputSearchResultsPage.clear();
-            inputSearchResultsPage.sendKeys(searchTerm);
+    public void fillSearchTermToSelectedPage(String searchTerm, Page page){
+        switch(page){
+            case INPUTSEARCHHOMEPAGE:
+                inputSearchHomepage.clear();
+                inputSearchHomepage.sendKeys(searchTerm);
+                break;
+            case INPUTSEARCHRESULTSPAGE:
+                inputSearchResultsPage.clear();
+                inputSearchResultsPage.sendKeys(searchTerm);
+                break;
         }
     }
+
+    //Enter any search term and choose which search page to send it to.
+//    public void fillSearchInputWithTerm(String searchTerm, WebElement inputSearchPage){
+//        if(inputSearchPage == inputSearchHomepage){
+//            inputSearchHomepage.clear();
+//            inputSearchHomepage.sendKeys(searchTerm);
+//        }else if(inputSearchPage == inputSearchResultsPage){
+//            inputSearchResultsPage.clear();
+//            inputSearchResultsPage.sendKeys(searchTerm);
+//        }
+//    }
 
     public void clickSearchBtn(){
         btnSearchSubmit.click();

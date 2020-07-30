@@ -7,6 +7,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import pageObjects.SearchPage;
 import java.util.*;
+import DDGData.Page;
 
 public class DDGSearchTests {
 
@@ -29,13 +30,15 @@ public class DDGSearchTests {
         // Navigates to base URL.
         driver.get("http://duckduckgo.com/");
         //Search with provided term, submit and assert page/picture landing, search query in search results.
-        searchPage.fillSearchInputWithTerm(randomTerm1, searchPage.inputSearchHomepage);
+        searchPage.fillSearchTermToSelectedPage(randomTerm1, Page.INPUTSEARCHHOMEPAGE);
+        //searchPage.fillSearchInputWithTerm(randomTerm1, searchPage.inputSearchHomepage);
         searchPage.clickSearchBtn();
         Assert.assertTrue(searchPage.isSearchResultsDisplayed(), "Verifying Search Results Container.");
         Assert.assertTrue(searchPage.isPictureResultsDisplayed(), "Verifying Picture Results Container");
         Assert.assertEquals(searchPage.getSearchQueryText(), randomTerm1, "Verifying Search Query Input");
         //Next test, same as above with using keyboard enter key.
-        searchPage.fillSearchInputWithTerm(randomTerm2, searchPage.inputSearchResultsPage);
+        searchPage.fillSearchTermToSelectedPage(randomTerm2, Page.INPUTSEARCHRESULTSPAGE);
+        //searchPage.fillSearchInputWithTerm(randomTerm2, searchPage.inputSearchResultsPage);
         searchPage.keyboardEnterBtn();
         Assert.assertTrue(searchPage.isSearchResultsDisplayed(), "Verifying Search Results Container.");
         Assert.assertTrue(searchPage.isPictureResultsDisplayed(), "Verifying Picture Results Container");
