@@ -1,5 +1,6 @@
 package pageObjects;
-import DDGData.Page;
+
+import DDGData.DDGData;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -19,31 +20,20 @@ public class SearchPage {
     private WebElement inputSearchResultsQuery;
 
     //Enter any search term and choose which search page to send it to.
-    public void fillSearchTermToSelectedPage(String searchTerm, Page page){
-        switch(page){
-            case INPUTSEARCHHOMEPAGE:
+    public void fillSearchTermToSelectedPage(String searchTerm, SearchPageContext pageContext) {
+        switch (pageContext) {
+            case INPUT_SEARCH_HOME_PAGE:
                 inputSearchHomepage.clear();
                 inputSearchHomepage.sendKeys(searchTerm);
                 break;
-            case INPUTSEARCHRESULTSPAGE:
+            case INPUT_SEARCH_RESULTS_PAGE:
                 inputSearchResultsPage.clear();
                 inputSearchResultsPage.sendKeys(searchTerm);
                 break;
         }
     }
 
-    //Enter any search term and choose which search page to send it to.
-//    public void fillSearchInputWithTerm(String searchTerm, WebElement inputSearchPage){
-//        if(inputSearchPage == inputSearchHomepage){
-//            inputSearchHomepage.clear();
-//            inputSearchHomepage.sendKeys(searchTerm);
-//        }else if(inputSearchPage == inputSearchResultsPage){
-//            inputSearchResultsPage.clear();
-//            inputSearchResultsPage.sendKeys(searchTerm);
-//        }
-//    }
-
-    public void clickSearchBtn(){
+    public void clickSearchBtn() {
         btnSearchSubmit.click();
     }
 
@@ -51,24 +41,28 @@ public class SearchPage {
         return containerSearchResults.isDisplayed();
     }
 
-    public boolean isPictureResultsDisplayed(){
-        if(!pictureContainerSearchResults.isDisplayed()) {
+    public boolean isPictureResultsDisplayed() {
+        if (!pictureContainerSearchResults.isDisplayed()) {
             System.out.println("Picture container not displayed or not available, returning search results only.");
             return containerSearchResults.isDisplayed();
         }
         return pictureContainerSearchResults.isDisplayed();
-        }
+    }
 
-    public void keyboardEnterBtn(){
+    public void keyboardEnterBtn() {
         inputSearchResultsPage.sendKeys(Keys.ENTER);
     }
 
-    public boolean isSearchResultDisplayedInSearchBar(String expectedQuery){
+    public boolean isSearchResultDisplayedInSearchBar(String expectedQuery) {
         return getSearchQueryText().equals(expectedQuery);
     }
 
-    public String getSearchQueryText(){
+    public String getSearchQueryText() {
         return inputSearchResultsQuery.getAttribute("Value");
     }
 
+    public enum SearchPageContext {
+        INPUT_SEARCH_HOME_PAGE,
+        INPUT_SEARCH_RESULTS_PAGE;
+    }
 }

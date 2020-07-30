@@ -6,13 +6,16 @@ import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pageObjects.SearchPage;
-import java.util.*;
-import DDGData.Page;
+
+import java.util.List;
+
+import static pageObjects.SearchPage.SearchPageContext.INPUT_SEARCH_HOME_PAGE;
+import static pageObjects.SearchPage.SearchPageContext.INPUT_SEARCH_RESULTS_PAGE;
 
 public class DDGSearchTests {
-
-    @Test(groups = {"Regression", "Search", "Smoke"}, testName = "Verify search results from ddg search query.")
-    public void verifyDDGSearchResults() throws InterruptedException {
+    @Test(groups = {"Regression", "Search", "Smoke"},
+            testName = "Verify search results from ddg search query.")
+    public void verifyDDGSearchResults() {
         // Vars
         List<String> availSearchTerms = DDGData.getSearchTerms();
         String randomTerm1 = RandomHelpers.getRandomStringFromList(availSearchTerms);
@@ -23,26 +26,30 @@ public class DDGSearchTests {
         // Sets property for location of driver executable.
         // TODO: make this environment var, or build groovy script to automate.
         System.setProperty("webdriver.chrome.driver", "Resources/chromedriver");
+
         // Creates new driver instance to use for the duration of this test.
         WebDriver driver = new ChromeDriver();
+
         //Page Objects
         SearchPage searchPage = PageFactory.initElements(driver, SearchPage.class);
+
         // Navigates to base URL.
         driver.get("http://duckduckgo.com/");
+
         //Search with provided term, submit and assert page/picture landing, search query in search results.
-        searchPage.fillSearchTermToSelectedPage(randomTerm1, Page.INPUTSEARCHHOMEPAGE);
-        //searchPage.fillSearchInputWithTerm(randomTerm1, searchPage.inputSearchHomepage);
+        searchPage.fillSearchTermToSelectedPage(randomTerm1, INPUT_SEARCH_HOME_PAGE);
         searchPage.clickSearchBtn();
         Assert.assertTrue(searchPage.isSearchResultsDisplayed(), "Verifying Search Results Container.");
         Assert.assertTrue(searchPage.isPictureResultsDisplayed(), "Verifying Picture Results Container");
         Assert.assertEquals(searchPage.getSearchQueryText(), randomTerm1, "Verifying Search Query Input");
+
         //Next test, same as above with using keyboard enter key.
-        searchPage.fillSearchTermToSelectedPage(randomTerm2, Page.INPUTSEARCHRESULTSPAGE);
-        //searchPage.fillSearchInputWithTerm(randomTerm2, searchPage.inputSearchResultsPage);
+        searchPage.fillSearchTermToSelectedPage(randomTerm2, INPUT_SEARCH_RESULTS_PAGE);
         searchPage.keyboardEnterBtn();
         Assert.assertTrue(searchPage.isSearchResultsDisplayed(), "Verifying Search Results Container.");
         Assert.assertTrue(searchPage.isPictureResultsDisplayed(), "Verifying Picture Results Container");
         Assert.assertEquals(searchPage.getSearchQueryText(), randomTerm2, "Verifying Search Query Input");
+
         // Calling driver quit to close and dispose of driver and process.
         driver.quit();
     }
