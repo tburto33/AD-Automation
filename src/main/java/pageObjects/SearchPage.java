@@ -1,4 +1,5 @@
 package pageObjects;
+import DDGData.Page;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -20,6 +21,7 @@ public class SearchPage {
     //Enter any search term and choose which search page to send it to.
     public void fillSearchInputWithTerm(String searchTerm, WebElement inputSearchPage){
         if(inputSearchPage == inputSearchHomepage){
+            inputSearchHomepage.clear();
             inputSearchHomepage.sendKeys(searchTerm);
         }else if(inputSearchPage == inputSearchResultsPage){
             inputSearchResultsPage.clear();

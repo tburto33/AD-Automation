@@ -28,7 +28,7 @@ public class DDGSearchTests {
         SearchPage searchPage = PageFactory.initElements(driver, SearchPage.class);
         // Navigates to base URL.
         driver.get("http://duckduckgo.com/");
-        //Search with provided term, submit and assert page/picture landing, search query in search results,.
+        //Search with provided term, submit and assert page/picture landing, search query in search results.
         searchPage.fillSearchInputWithTerm(randomTerm1, searchPage.inputSearchHomepage);
         searchPage.clickSearchBtn();
         Assert.assertTrue(searchPage.isSearchResultsDisplayed(), "Verifying Search Results Container.");
