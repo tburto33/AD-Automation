@@ -34,7 +34,7 @@ public class DDGSearchTests {
 
         //Page Objects
         SearchPage searchPage = PageFactory.initElements(driver, SearchPage.class);
-        LoggingAssert trueAssert = new LoggingAssert.TrueAssert();
+        LoggingAssert loggingAssert = new LoggingAssert();
 
         // Navigates to base URL.
         driver.get("http://duckduckgo.com/");
@@ -42,15 +42,15 @@ public class DDGSearchTests {
         //Search with provided term, submit and assert page/picture landing, search query in search results.
         searchPage.fillSearchTermToSelectedPage(randomTerm1, INPUT_SEARCH_HOME_PAGE);
         searchPage.clickSearchBtn();
-        trueAssert.executeAssert(searchPage.isSearchResultsDisplayed());
-        trueAssert.executeAssert(searchPage.isPictureResultsDisplayed());
+        loggingAssert.executeAssert(searchPage.isSearchResultsDisplayed());
+        loggingAssert.executeAssert(searchPage.isPictureResultsDisplayed());
         Assert.assertEquals(searchPage.getSearchQueryText(), randomTerm1, "Verifying Search Query Input");
 
         //Next test, same as above with using keyboard enter key.
         searchPage.fillSearchTermToSelectedPage(randomTerm2, INPUT_SEARCH_RESULTS_PAGE);
         searchPage.keyboardEnterBtn();
-        trueAssert.executeAssert(searchPage.isSearchResultsDisplayed());
-        trueAssert.executeAssert(searchPage.isPictureResultsDisplayed());
+        loggingAssert.executeAssert(searchPage.isSearchResultsDisplayed());
+        loggingAssert.executeAssert(searchPage.isPictureResultsDisplayed());
         Assert.assertTrue(searchPage.isPictureResultsDisplayed(), "Verifying Picture Results Container");
         Assert.assertEquals(searchPage.getSearchQueryText(), randomTerm2, "Verifying Search Query Input");
 
