@@ -1,9 +1,11 @@
 import DDGData.DDGData;
+import LoggingAssert.LoggingAssert;
 import RandomHelpers.RandomHelpers;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
+import org.testng.Reporter;
 import org.testng.annotations.Test;
 import pageObjects.SearchPage;
 
@@ -32,6 +34,7 @@ public class DDGSearchTests {
 
         //Page Objects
         SearchPage searchPage = PageFactory.initElements(driver, SearchPage.class);
+        LoggingAssert trueAssert = new LoggingAssert.TrueAssert();
 
         // Navigates to base URL.
         driver.get("http://duckduckgo.com/");
@@ -39,14 +42,15 @@ public class DDGSearchTests {
         //Search with provided term, submit and assert page/picture landing, search query in search results.
         searchPage.fillSearchTermToSelectedPage(randomTerm1, INPUT_SEARCH_HOME_PAGE);
         searchPage.clickSearchBtn();
-        Assert.assertTrue(searchPage.isSearchResultsDisplayed(), "Verifying Search Results Container.");
-        Assert.assertTrue(searchPage.isPictureResultsDisplayed(), "Verifying Picture Results Container");
+        trueAssert.executeAssert(searchPage.isSearchResultsDisplayed());
+        trueAssert.executeAssert(searchPage.isPictureResultsDisplayed());
         Assert.assertEquals(searchPage.getSearchQueryText(), randomTerm1, "Verifying Search Query Input");
 
         //Next test, same as above with using keyboard enter key.
         searchPage.fillSearchTermToSelectedPage(randomTerm2, INPUT_SEARCH_RESULTS_PAGE);
         searchPage.keyboardEnterBtn();
-        Assert.assertTrue(searchPage.isSearchResultsDisplayed(), "Verifying Search Results Container.");
+        trueAssert.executeAssert(searchPage.isSearchResultsDisplayed());
+        trueAssert.executeAssert(searchPage.isPictureResultsDisplayed());
         Assert.assertTrue(searchPage.isPictureResultsDisplayed(), "Verifying Picture Results Container");
         Assert.assertEquals(searchPage.getSearchQueryText(), randomTerm2, "Verifying Search Query Input");
 
