@@ -11,6 +11,7 @@ import pageObjects.SearchPage;
 
 import java.util.List;
 
+import static LoggingAssert.LoggingAssert.AssertTest.ASSERT_TRUE;
 import static pageObjects.SearchPage.SearchPageContext.INPUT_SEARCH_HOME_PAGE;
 import static pageObjects.SearchPage.SearchPageContext.INPUT_SEARCH_RESULTS_PAGE;
 
@@ -42,16 +43,15 @@ public class DDGSearchTests {
         //Search with provided term, submit and assert page/picture landing, search query in search results.
         searchPage.fillSearchTermToSelectedPage(randomTerm1, INPUT_SEARCH_HOME_PAGE);
         searchPage.clickSearchBtn();
-        loggingAssert.executeAssert(searchPage.isSearchResultsDisplayed());
-        loggingAssert.executeAssert(searchPage.isPictureResultsDisplayed());
+        loggingAssert.executeAssert(searchPage.isSearchResultsDisplayed(), ASSERT_TRUE);
+        loggingAssert.executeAssert(searchPage.isPictureResultsDisplayed(), ASSERT_TRUE);
         Assert.assertEquals(searchPage.getSearchQueryText(), randomTerm1, "Verifying Search Query Input");
 
         //Next test, same as above with using keyboard enter key.
         searchPage.fillSearchTermToSelectedPage(randomTerm2, INPUT_SEARCH_RESULTS_PAGE);
         searchPage.keyboardEnterBtn();
-        loggingAssert.executeAssert(searchPage.isSearchResultsDisplayed());
-        loggingAssert.executeAssert(searchPage.isPictureResultsDisplayed());
-        Assert.assertTrue(searchPage.isPictureResultsDisplayed(), "Verifying Picture Results Container");
+        loggingAssert.executeAssert(searchPage.isSearchResultsDisplayed(), ASSERT_TRUE);
+        loggingAssert.executeAssert(searchPage.isPictureResultsDisplayed(), ASSERT_TRUE);
         Assert.assertEquals(searchPage.getSearchQueryText(), randomTerm2, "Verifying Search Query Input");
 
         // Calling driver quit to close and dispose of driver and process.
