@@ -5,13 +5,9 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
-import org.testng.Reporter;
 import org.testng.annotations.Test;
 import pageObjects.SearchPage;
-
 import java.util.List;
-
-import static LoggingAssert.LoggingAssert.AssertTest.ASSERT_TRUE;
 import static pageObjects.SearchPage.SearchPageContext.INPUT_SEARCH_HOME_PAGE;
 import static pageObjects.SearchPage.SearchPageContext.INPUT_SEARCH_RESULTS_PAGE;
 
@@ -35,7 +31,7 @@ public class DDGSearchTests {
 
         //Page Objects
         SearchPage searchPage = PageFactory.initElements(driver, SearchPage.class);
-        LoggingAssert loggingAssert = new LoggingAssert();
+        LoggingAssert.TrueAssert trueAssert = new LoggingAssert.TrueAssert();
 
         // Navigates to base URL.
         driver.get("http://duckduckgo.com/");
@@ -43,15 +39,15 @@ public class DDGSearchTests {
         //Search with provided term, submit and assert page/picture landing, search query in search results.
         searchPage.fillSearchTermToSelectedPage(randomTerm1, INPUT_SEARCH_HOME_PAGE);
         searchPage.clickSearchBtn();
-        loggingAssert.executeAssert(searchPage.isSearchResultsDisplayed(), ASSERT_TRUE);
-        loggingAssert.executeAssert(searchPage.isPictureResultsDisplayed(), ASSERT_TRUE);
+        trueAssert.executeAssert(searchPage.isSearchResultsDisplayed(), "Search Results Displayed");
+        trueAssert.executeAssert(searchPage.isPictureResultsDisplayed(), "Picture Results Displayed");
         Assert.assertEquals(searchPage.getSearchQueryText(), randomTerm1, "Verifying Search Query Input");
 
         //Next test, same as above with using keyboard enter key.
         searchPage.fillSearchTermToSelectedPage(randomTerm2, INPUT_SEARCH_RESULTS_PAGE);
         searchPage.keyboardEnterBtn();
-        loggingAssert.executeAssert(searchPage.isSearchResultsDisplayed(), ASSERT_TRUE);
-        loggingAssert.executeAssert(searchPage.isPictureResultsDisplayed(), ASSERT_TRUE);
+        trueAssert.executeAssert(searchPage.isSearchResultsDisplayed(),"Search Results Displayed");
+        trueAssert.executeAssert(searchPage.isPictureResultsDisplayed(),"Picture Results Displayed");
         Assert.assertEquals(searchPage.getSearchQueryText(), randomTerm2, "Verifying Search Query Input");
 
         // Calling driver quit to close and dispose of driver and process.
