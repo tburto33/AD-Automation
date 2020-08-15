@@ -6,9 +6,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.annotations.Test;
 import pageObjects.SearchPage;
-
 import java.util.List;
-
 import static pageObjects.SearchPage.SearchPageContext.INPUT_SEARCH_HOME_PAGE;
 import static pageObjects.SearchPage.SearchPageContext.INPUT_SEARCH_RESULTS_PAGE;
 
