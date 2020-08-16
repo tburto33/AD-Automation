@@ -1,6 +1,7 @@
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.Test;
+import pageObjects.DotaBuffPage;
 
 public class DotaBuffTests {
 
@@ -18,10 +19,12 @@ public class DotaBuffTests {
         WebDriver driver = new ChromeDriver();
 
         //Page Objects
+        DotaBuffPage dotaBuffPage = new DotaBuffPage();
 
         // Navigates to base URL.
         driver.get("https://www.dotabuff.com/");
 
-
+        // Calling driver quit to close and dispose of driver and process.
+        driver.quit();
     }
 }
