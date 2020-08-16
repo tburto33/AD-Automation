@@ -15,6 +15,7 @@ public class DDGSearchTests {
 
     @Test(groups = {"Regression", "Search", "Smoke"},
             testName = "Verify search results from ddg search query.")
+
     public void verifyDDGSearchResults() {
         // Vars
         List<String> availSearchTerms = DDGData.getSearchTerms();
@@ -51,6 +52,7 @@ public class DDGSearchTests {
         loggingAssert.assertTrue(searchPage.isPictureResultsDisplayed(), "Verifying Picture Results Container");
         loggingAssert.assertEquals(searchPage.getSearchQueryText(), randomTerm2, "Verifying Search Query Input");
 
+        //Failure test
         loggingAssert.assertTrue(false, "Assert True, False");
 
         // Calling driver quit to close and dispose of driver and process.
