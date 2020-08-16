@@ -24,6 +24,8 @@ public class DotaBuffTests {
         // Navigates to base URL.
         driver.get("https://www.dotabuff.com/");
 
+        dotaBuffPage.fillDotaBuffHomeSearchBar("Drow Ranger");
+
         // Calling driver quit to close and dispose of driver and process.
         driver.quit();
     }

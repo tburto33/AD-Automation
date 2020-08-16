@@ -6,6 +6,7 @@ import org.openqa.selenium.support.FindBy;
 
 public class DotaBuffPage {
 
+    //WebPage Elements for DotaBuff
     @FindBy(id = "q")
     private WebElement dotaBuffHomePageSearchBar;
 
