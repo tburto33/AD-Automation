@@ -12,5 +12,5 @@ public class DotaBuffWebSite {
     public void fillDotaBuffHomeSearchBar(String hero) {
         dotaBuffHomePageSearchBar.sendKeys(hero);
     }
-
+    
 }
