@@ -1,10 +1,9 @@
 package pageObjects;
 
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class DotaBuffPage {
+public class DotaBuffWebSite {
 
     //WebPage Elements for DotaBuff
     @FindBy(id = "q")

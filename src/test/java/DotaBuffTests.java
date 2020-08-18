@@ -1,14 +1,14 @@
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.Test;
-import pageObjects.DotaBuffPage;
+import pageObjects.DotaBuffWebSite;
 
 public class DotaBuffTests {
 
     @Test(groups = {"Regression", "Search", "Smoke"},
             testName = "Verify search results from DotaBuff.")
 
-    public void verifyDotaBuffTests(){
+    public void verifyDotaBuffTests() throws InterruptedException {
         //VARS
 
         // Sets property for location of driver executable.
@@ -19,12 +19,13 @@ public class DotaBuffTests {
         WebDriver driver = new ChromeDriver();
 
         //Page Objects
-        DotaBuffPage dotaBuffPage = new DotaBuffPage();
+        DotaBuffWebSite dotaBuffPage = new DotaBuffWebSite();
 
         // Navigates to base URL.
         driver.get("https://www.dotabuff.com/");
 
-        dotaBuffPage.fillDotaBuffHomeSearchBar("Drow Ranger");
+        Thread.sleep(5000);
+        dotaBuffPage.fillDotaBuffHomeSearchBar("Arc Warden");
 
         // Calling driver quit to close and dispose of driver and process.
         driver.quit();
