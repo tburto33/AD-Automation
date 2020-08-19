@@ -1,9 +1,15 @@
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.PageFactory;
+import org.testng.annotations.AfterTest;
 import org.testng.annotations.Test;
 import pageObjects.DotaBuffWebSite;
 
+
 public class DotaBuffTests {
+
+    // Creates new driver instance to use for the duration of this test.
+    WebDriver driver = new ChromeDriver();
 
     @Test(groups = {"Regression", "Search", "Smoke"},
             testName = "Verify search results from DotaBuff.")
@@ -15,19 +21,17 @@ public class DotaBuffTests {
         // TODO: make this environment var, or build groovy script to automate.
         System.setProperty("webdriver.chrome.driver", "Resources/chromedriver");
 
-        // Creates new driver instance to use for the duration of this test.
-        WebDriver driver = new ChromeDriver();
-
         //Page Objects
-        DotaBuffWebSite dotaBuffPage = new DotaBuffWebSite();
+        DotaBuffWebSite dBSite = PageFactory.initElements(driver, DotaBuffWebSite.class);
 
-        // Navigates to base URL.
-        driver.get("https://www.dotabuff.com/");
+        dBSite.getDBHeroPage(DotaBuffWebSite.DBHeroes.ARC_WARDEN);
 
-        Thread.sleep(5000);
-        dotaBuffPage.fillDotaBuffHomeSearchBar("Arc Warden");
-
-        // Calling driver quit to close and dispose of driver and process.
         driver.quit();
     }
+
+    // Calling driver quit to close and dispose of driver and process.
+//    @AfterTest
+//    public void killChromeDriver(){
+//        driver.quit();
+//    }
 }

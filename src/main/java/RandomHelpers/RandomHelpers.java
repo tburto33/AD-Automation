@@ -1,5 +1,7 @@
 package RandomHelpers;
 
+import org.openqa.selenium.Keys;
+
 import java.util.List;
 import java.util.Random;
 
@@ -9,5 +11,9 @@ public class RandomHelpers {
         Random random = new Random();
         int randomIndex = random.nextInt(list.size() - 1);
         return list.get(randomIndex);
+    }
+
+    public static String openNewChromeTab(){
+        return Keys.chord(Keys.CONTROL, Keys.RETURN);
     }
 }
