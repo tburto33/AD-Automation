@@ -1,66 +1,39 @@
 package pageObjects;
 
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.FindBy;
+import java.util.HashMap;
 
 public class DotaBuffWebSite {
 
-    private final String dotaBuffURL = "https://www.dotabuff.com";
+    //Arc Warden WebElements
+    @FindBy(xpath = "//img [contains(@alt, 'Arc Warden')]")
+    private WebElement arcWardenPageHeaderHeroImage;
+    @FindBy(xpath = "//a [contains(@href, '/heroes/arc-warden/items')]")
+    private WebElement arcWardenMoreItemsButton;
+    @FindBy(xpath = "/html/body/div[1]/div[8]/div[2]/div[3]/div[1]/div[1]/section[4]/article/table/tbody/tr[1]/td[1]/div/a/img")
+    private WebElement arcWardenFirstItem;
+    @FindBy(xpath = "/html/body/div[1]/div[8]/div[2]/div[3]/div[1]/div[1]/section[4]/article/table/tbody/tr[2]/td[1]/div/a/img")
+    private WebElement arcWardenSecondItem;
+    @FindBy(xpath = "/html/body/div[1]/div[8]/div[2]/div[3]/div[1]/div[1]/section[4]/article/table/tbody/tr[3]/td[1]/div/a/img")
+    private WebElement arcWardenThirdItem;
 
-    WebDriver driver = new ChromeDriver();
+    //Drow Ranger WebElements
+    @FindBy(xpath = "//img [contains(@alt, 'Drow Ranger')]")
+    private WebElement drowRangerPageHeaderHeroImage;
 
-    @FindBy(xpath = "//div [contains(@h1, 'Arc Warden')]")
-    private WebElement arcWardenPageHeader;
-    @FindBy(xpath = "//div [contains(@h1, 'Drow Ranger')]")
-    private WebElement drowRangerPageHeader;
-    @FindBy(xpath = "//div [contains(@h1, 'Snapfire')]")
-    private WebElement snapfirePageHeader;
+    //SnapFire WebElements
+    @FindBy(xpath = "//img [contains(@alt, 'Snapfire')]")
+    private WebElement snapfirePageHeaderHeroImage;
 
-    public boolean isHeroDisplayed(){
-        return arcWardenPageHeader.isDisplayed();
+    public boolean arcWardenTest(){
+        return arcWardenPageHeaderHeroImage.isDisplayed();
     }
 
-
-    public void getDBHeroPage(DBHeroes heroName){
-        switch(heroName){
-            case ARC_WARDEN:
-                driver.get(dotaBuffURL + DBHeroURL.ARC_WARDEN_URL);
-                break;
-            case DROW_RANGER:
-                driver.get(dotaBuffURL + DBHeroURL.DROW_RANGER_URL);
-                break;
-            case SNAPFIRE:
-                driver.get(dotaBuffURL + DBHeroURL.SNAPFIRE_URL);
-        }
+    public void arcWardenFirstItem(){
+        System.out.println(arcWardenFirstItem.getAttribute("oldtitle"));
+        System.out.println(arcWardenSecondItem.getAttribute("oldtitle"));
+        System.out.println(arcWardenThirdItem.getAttribute("oldtitle"));
     }
 
-    public enum DBHeroes{
-        ARC_WARDEN,
-        DROW_RANGER,
-        SNAPFIRE;
-    }
-
-    public enum DBHeroURL {
-
-        ARC_WARDEN_URL{
-            @Override
-            public String toString(){
-                return "/heroes/arc-warden";
-            }
-        },
-        DROW_RANGER_URL{
-            @Override
-            public String toString(){
-                return "/heroes/drow-ranger";
-            }
-        },
-        SNAPFIRE_URL{
-            @Override
-            public String toString(){
-                return "/heroes/snapfire";
-            }
-        }
-    }
 }
