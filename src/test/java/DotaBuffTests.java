@@ -1,3 +1,4 @@
+import Utilities.LoggingAssert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.PageFactory;
@@ -21,10 +22,15 @@ public class DotaBuffTests {
         // TODO: make this environment var, or build groovy script to automate.
         System.setProperty("webdriver.chrome.driver", "Resources/chromedriver");
 
+        WebDriver driver = new ChromeDriver();
+
         //Page Objects
         DotaBuffWebSite dBSite = PageFactory.initElements(driver, DotaBuffWebSite.class);
+        LoggingAssert loggingAssert = new LoggingAssert();
 
-        dBSite.getDBHeroPage(DotaBuffWebSite.DBHeroes.ARC_WARDEN);
+        driver.get("https://www.dotabuff.com/heroes/arc-warden");
+
+        loggingAssert.assertTrue(dBSite.isHeroDisplayed());
 
         driver.quit();
     }

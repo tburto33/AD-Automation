@@ -18,6 +18,10 @@ public class DotaBuffWebSite {
     @FindBy(xpath = "//div [contains(@h1, 'Snapfire')]")
     private WebElement snapfirePageHeader;
 
+    public boolean isHeroDisplayed(){
+        return arcWardenPageHeader.isDisplayed();
+    }
+
 
     public void getDBHeroPage(DBHeroes heroName){
         switch(heroName){
