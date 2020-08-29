@@ -1,14 +1,14 @@
-import DDGData.DDGData;
+import dao.DDGData.DDGData;
 import Utilities.LoggingAssert;
 import RandomHelpers.RandomHelpers;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.annotations.Test;
-import pageObjects.SearchPage;
+import pageObjects.DDG.SearchPage;
 import java.util.List;
-import static pageObjects.SearchPage.SearchPageContext.INPUT_SEARCH_HOME_PAGE;
-import static pageObjects.SearchPage.SearchPageContext.INPUT_SEARCH_RESULTS_PAGE;
+import static pageObjects.DDG.SearchPage.SearchPageContext.INPUT_SEARCH_HOME_PAGE;
+import static pageObjects.DDG.SearchPage.SearchPageContext.INPUT_SEARCH_RESULTS_PAGE;
 
 public class DDGSearchTests {
     LoggingAssert loggingAssert = new LoggingAssert();
