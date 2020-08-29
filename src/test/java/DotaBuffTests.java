@@ -1,8 +1,9 @@
 import Utilities.LoggingAssert;
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.PageFactory;
-import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.Test;
 import pageObjects.DotaBuffWebSite;
@@ -29,9 +30,18 @@ public class DotaBuffTests {
         DotaBuffWebSite dBSite = PageFactory.initElements(driver, DotaBuffWebSite.class);
 
         driver.get("https://www.dotabuff.com/heroes/arc-warden");
-
-        loggingAssert.assertTrue(dBSite.arcWardenTest());
+        loggingAssert.assertTrue(dBSite.arcWardenIsDisplayed());
         dBSite.arcWardenTopItems();
+        driver.findElement(By.cssSelector("body")).sendKeys(Keys.CONTROL + "t");
+
+        driver.get("https://www.dotabuff.com/heroes/drow-ranger");
+        loggingAssert.assertTrue(dBSite.drowRangerIsDisplayed());
+        dBSite.drowRangerTopItems();
+        driver.findElement(By.cssSelector("body")).sendKeys(Keys.CONTROL + "t");
+
+        driver.get("https://www.dotabuff.com/heroes/snapfire");
+        loggingAssert.assertTrue(dBSite.snapFireIsDisplayed());
+        dBSite.snapFireTopItems();
 
         driver.quit();
     }
