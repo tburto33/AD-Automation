@@ -15,7 +15,7 @@ public class DotaBuffTests {
     @Test(groups = {"Regression", "Search", "Smoke"},
             testName = "Verify search results from DotaBuff.")
 
-    public void verifyDotaBuffTests() throws InterruptedException {
+    public void verifyDotaBuffTests() {
         //VARS
 
         // Sets property for location of driver executable.
@@ -31,7 +31,7 @@ public class DotaBuffTests {
         driver.get("https://www.dotabuff.com/heroes/arc-warden");
 
         loggingAssert.assertTrue(dBSite.arcWardenTest());
-        dBSite.arcWardenFirstItem();
+        dBSite.arcWardenTopItems();
 
         driver.quit();
     }

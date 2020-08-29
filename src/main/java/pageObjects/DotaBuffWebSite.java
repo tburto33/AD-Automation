@@ -1,10 +1,13 @@
 package pageObjects;
 
+import DotaData.DotaData;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import java.util.HashMap;
 
 public class DotaBuffWebSite {
+
+    DotaData dotaData;
 
     //Arc Warden WebElements
     @FindBy(xpath = "//img [contains(@alt, 'Arc Warden')]")
@@ -30,10 +33,11 @@ public class DotaBuffWebSite {
         return arcWardenPageHeaderHeroImage.isDisplayed();
     }
 
-    public void arcWardenFirstItem(){
-        System.out.println(arcWardenFirstItem.getAttribute("oldtitle"));
-        System.out.println(arcWardenSecondItem.getAttribute("oldtitle"));
-        System.out.println(arcWardenThirdItem.getAttribute("oldtitle"));
+    public void arcWardenTopItems(){
+        HashMap<Integer, String> arcWarden = dotaData.getArcWarden();
+        arcWarden.put(1, arcWardenFirstItem.getAttribute("oldtitle"));
+        arcWarden.put(2, arcWardenSecondItem.getAttribute("oldtitle"));
+        arcWarden.put(3, arcWardenThirdItem.getAttribute("oldtitle"));
+        System.out.println("Arc Warden's Top Items This Week: " + arcWarden);
     }
-
 }
