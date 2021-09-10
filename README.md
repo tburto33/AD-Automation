@@ -10,8 +10,8 @@ This was a collaboration with a friend for me to learn Java and automation using
 
 *(This is mainly a learning and portfolio piece.)*
 
-**Languages**: Java
-**Frameworks**: Selenium Webdriver and TestNG
-**Tools**: Gradle, ChromeDriver
+- **Languages**: Java
+- **Frameworks**: Selenium Webdriver and TestNG
+- **Tools**: Gradle, ChromeDriver
 
 
